@@ -1,46 +1,118 @@
-# Getting Started with Create React App
+```markdown
+# 🌌 APOD Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**APOD Explorer** is a responsive, single-page React TypeScript application that allows users to explore NASA's Astronomy Picture of the Day (APOD) using the official NASA APOD API. Users can view today's image, generate a random APOD, or search by a specific date. In addition, the app also displays news articles related to NASA, sourced from the News API. All of this is presented in a sleek, dark-themed interface with smooth navigation and a responsive design.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+### Key Features:
+- 🌠 View today’s Astronomy Picture of the Day
+- 🎲 Generate a random APOD
+- 📅 Search APODs by specific date
+- 📰 Display NASA-related news articles using the News API
+- 📱 Fully responsive with mobile hamburger menu
+- 🧭 Navigation via `react-router-dom`
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠️ Instructions to Run the Project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 📦 Prerequisites:
+- [Node.js](https://nodejs.org/en/) (v18 or higher recommended)
+- npm (included with Node)
 
-### `npm test`
+### 🧪 Run Locally:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/benjamin-macmichael/apod-explorer.git
+   cd apod-explorer
+   ```
 
-### `npm run build`
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Create an `.env` file** in the project root with the following:
+   ```
+   REACT_APP_NASA_API_KEY=your_nasa_api_key_here
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   👉 You can get a free NASA API key at: https://api.nasa.gov
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Run the development server**
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+5. **Visit in your browser**
+   ```
+   http://localhost:3000
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔌 API Used & How Data Is Handled
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### NASA Astronomy Picture of the Day (APOD) API
+**Endpoint:** `https://api.nasa.gov/planetary/apod`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The app makes GET requests to the APOD API with the following parameters:
+- `api_key`: Required key from your `.env` file
+- `date`: Optional (for date-based search)
 
-## Learn More
+### News API
+**Endpoint:** `https://newsapi.org/v2/everything?q=nasa`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The app fetches NASA-related news articles using the News API, making GET requests to the above endpoint with the following parameters:
+- `q`: The search term for NASA-related articles (fixed to "nasa").
+- `apiKey`: The required key from your `.env` file.
+- `pageSize`: Limits the number of articles fetched per request (set to 12).
+- `page`: Used for pagination to fetch articles across multiple pages.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Data Handling Overview:
+The application manages state for browsing APOD entries, tracking user interaction with the APOD history, and fetching news articles.
+
+1. **APOD (Astronomy Picture of the Day)**:
+   - Represents an individual APOD entry fetched from the NASA API.
+   - **State structure**:
+     - `title` (string): The title of the APOD.
+     - `url` (string): The URL of the image or video.
+     - `explanation` (string): A description of the APOD.
+     - `media_type` (string): Indicates whether the content is an "image" or "video".
+   - Components that use this data: `apod.tsx` and `searchapod.tsx`.
+
+2. **APOD History**:
+   - Tracks the browsing history of the user, allowing navigation between previously viewed APODs.
+   - **State structure**:
+     - `history` (array of ApodData): Stores previously viewed APODs.
+     - `currentIndex` (number): The index of the currently displayed APOD within the history.
+   - Actions:
+     - `ADD_APOD`: Adds a new APOD entry to history while avoiding duplicates.
+     - `GO_BACK`: Moves back in history if possible.
+     - `GO_FORWARD`: Moves forward in history if possible.
+
+3. **News Articles**:
+   - Represents articles fetched from the News API related to NASA.
+   - **State structure**:
+     - `url` (string): The URL of the full article.
+     - `urlToImage` (string or null): The URL of an article’s thumbnail image.
+     - `title` (string): The title of the article.
+     - `description` (string): A brief summary of the article.
+   - Components that use this data:
+     - `newscards`: Displays 4 news articles on the home page.
+     - `newscardsall`: A dedicated route that fetches and displays more articles for browsing.
+
+### Data Fetching:
+- API responses for both the APOD and news articles are fetched using `fetch` in async functions within React components.
+- TypeScript interfaces define the shape of the data for each entity.
+- Responses are stored in the application state (using React state hooks), allowing users to view APOD entries and news articles, and navigate their history.
+- The app uses local storage to prevent repeated API calls if the data does not need to be refreshed, ensuring that browsing history and previously fetched data persist between page reloads.
+
+
+## 🌟 Additional Features Implemented
+
+- **Local Storage**: Uses local storage to remember previously fetched APOD data, preventing unnecessary API calls when navigating between pages or refreshing the app.
+
+- **Lambda Function for NewsAPI**: Deployed an AWS Lambda function as a proxy to fetch data from the NewsAPI, since direct requests from GitHub Pages were being blocked.

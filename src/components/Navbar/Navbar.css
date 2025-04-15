@@ -1,0 +1,114 @@
+:root {
+  --bg-color: #17202a;
+  --text-color: #ffffff;
+  --link-bg: #1f3a5b;
+  --link-hover-bg: #66fcf1;
+  --link-hover-text: #17202a;
+  --accent-color: #66fcf1;
+  --title-color: #45a29e;
+}
+
+.navbar {
+  width: 98%;
+  background-color: var(--bg-color);
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  box-sizing: border-box;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline: 0;
+  z-index: 20;
+  margin-inline: 1%;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar-title {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: bold;
+  color: var(--title-color);
+  font-family: 'Bungee Shade', cursive;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: var(--text-color);
+  background-color: var(--link-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  background-color: var(--link-hover-bg);
+  color: var(--link-hover-text);
+}
+
+.nav-links a:focus-visible {
+  outline: 2px dashed var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Hamburger button */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    margin-top: 1rem;
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    width: auto;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+  }
+}

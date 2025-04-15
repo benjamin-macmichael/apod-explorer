@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import Apod from './components/Apod/Apod';
+import SearchApod from './components/SearchApod/SearchApod';
+import NASA_News_All from './components/NewsCardsAll/NewsCardsAll';
+import Navbar from './components/Navbar/Navbar';
+
+function Layout() {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Apod />} />
+        <Route path="search" element={<SearchApod />} />
+        <Route path="news-all" element={<NASA_News_All />} />
+      </Route>
+    </Routes>
   );
 }
 

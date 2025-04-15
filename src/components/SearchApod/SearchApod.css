@@ -1,0 +1,172 @@
+.search-apod {
+  text-align: center;
+  padding: 20px;
+  padding-top: 80px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-apod input {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+  box-sizing: border-box;
+  flex: 0 0 auto; /* prevent stretching */
+}
+
+.search-apod button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  flex: 0 0 auto; /* prevent stretching */
+  white-space: nowrap;
+}
+
+.search-apod button:hover {
+  background-color: #61dafb;
+  color: #17202a;
+}
+
+/* Main container */
+.apod-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Extra subtle styling for transitions */
+.apod-container.apod-pending {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.apod-container:not(.apod-pending) {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
+/* Content section */
+.apod-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: #1f2833;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+}
+
+/* Header styling */
+.Apod-header {
+  font-size: 28px;
+  font-weight: bold;
+  color: #fdfefe;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.apod-image {
+  width: 80%;
+  max-width: 40vw;
+  height: auto;
+  border-radius: 0.8em;
+  box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.2);
+  margin-bottom: 2vh;
+  object-fit: contain;
+}
+
+.apod-iframe {
+  width: 80%;
+  max-width: 40vw;
+  height: 40vh;
+  border-radius: 0.8em;
+}
+
+/* Description styling */
+.Apod-description p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #c5c6c7;
+  text-align: center;
+  margin: 0;
+  max-width: 1000px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Fade effect */
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .apod-image,
+  .apod-iframe {
+    width: 90%;
+    max-width: 60vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .apod-image,
+  .apod-iframe {
+    width: 100%;
+    max-width: 80vw;
+  }
+
+  .Apod-header {
+    font-size: 20px;
+  }
+
+  .Apod-description p {
+    font-size: 14px;
+  }
+
+  .search-apod input,
+  .search-apod button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .search-apod {
+    padding: 10px;
+  }
+}

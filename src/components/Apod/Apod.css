@@ -1,0 +1,363 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b0c10; /* Dark background */
+  color: white;
+  font-size: 18px;
+  z-index: 999; /* Ensures it's above everything */
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid white;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+body {
+  background-color: #0b0c10;
+  color: #c5c6c7;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.space-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  /* transform: translate(-50%, -50%); */
+  text-align: left;
+  color: white;
+  background: rgba(20, 10, 70, 0);
+  font-family: 'Courier New', Courier, monospace
+  /* padding: 10px 20px;
+  border-radius: 10px; */
+}
+
+.video-overlay h1 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.video-overlay p {
+  font-size: 16px;
+  margin: 5px 0 0;
+}
+
+.video-overlay-card-container {
+  position: absolute;
+  top: 55%;
+  right: 5%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Increased space between cards */
+}
+
+.video-overlay-card {
+  background: rgba(20, 20, 50, 0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 8px; /* Reduced border radius for sharper corners */
+  width: 230px; /* Smaller width for cards */
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-overlay-card:hover {
+  transform: translateY(-10px); /* Lift the card on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* Darker shadow on hover */
+}
+
+.video-overlay-card h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.video-overlay-card p {
+  font-size: 14px;
+}
+
+.video-overlay-card button {
+  background-color: #45a29e;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.video-overlay-card button:hover {
+  background-color: #66fcf1;
+}
+
+/* Main container */
+.apod-container {
+  width: 100%;
+  max-width: 1200px; /* Limit the max width */
+  margin: 0 auto; /* Center the content */
+  padding: 0 20px; /* Add some padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center everything inside */
+  margin-top: 20px;
+}
+
+/* Content section: header, image, description, and buttons */
+.apod-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Space between the elements */
+  background: #1f2833; /* Dark background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+}
+
+/* Header styling */
+.Apod-header {
+  font-size: 28px;
+  font-weight: bold;
+  color: #fdfefe;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.apod-image {
+  width: 80%; /* Shrinks the image while keeping it responsive */
+  max-width: 40vw; /* Smaller width on large screens */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 0.8em; /* Slightly smaller rounded corners */
+  box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.2);
+  margin-bottom: 2vh;
+  object-fit: contain;
+}
+
+/* Reduce the iframe size accordingly */
+.apod-iframe {
+  width: 80%;
+  max-width: 40vw;
+  height: 40vh; /* Make the iframe smaller */
+  border-radius: 0.8em;
+}
+
+/* Adjust size further for smaller screens */
+@media (max-width: 768px) {
+  .apod-image, .apod-iframe {
+    width: 90%;
+    max-width: 60vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .apod-image, .apod-iframe {
+    width: 100%;
+    max-width: 80vw;
+  }
+}
+
+/* Fade effect */
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Description styling */
+.Apod-description p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #c5c6c7;
+  text-align: center;
+  margin: 0;
+  max-width: 1000px;
+}
+
+/* Controls section */
+.apod-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px; /* Limit the width of buttons */
+  gap: 20px;
+}
+
+button {
+  background-color: #45a29e;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  flex-grow: 1; /* Allow buttons to grow and fill the space evenly */
+}
+
+button:hover {
+  background-color: #66fcf1;
+}
+
+button:disabled {
+  background-color: #1f2833;
+  cursor: not-allowed;
+}
+
+/* Styles for smaller laptop screens */
+
+@media (max-width: 1600px){
+  .video-container {
+    height: 100vh;
+  }
+}
+
+/* Tablets and below */
+@media (max-width: 1024px) {
+  .video-overlay {
+    left: 10%;
+    top: 35%;
+  }
+
+  .video-overlay h1 {
+    font-size: 28px;
+  }
+
+  .video-overlay p {
+    font-size: 14px;
+  }
+
+  .video-overlay-card-container {
+    right: 2%;
+    top: 60%;
+  }
+
+  .video-overlay-card {
+    width: 200px;
+    padding: 12px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .video-container {
+    height: auto;
+  }
+
+  .video-overlay {
+    top: 20%;
+    left: 5%;
+    text-align: center;
+    width: 90%;
+  }
+
+  .video-overlay h1 {
+    font-size: 24px;
+  }
+
+  .video-overlay p {
+    font-size: 13px;
+  }
+
+  .video-overlay-card-container {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 0 10px;
+  }
+
+  .video-overlay-card {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .apod-image,
+  .apod-iframe {
+    width: 100%;
+    height: auto;
+  }
+
+  .Apod-header {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .Apod-description p {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .apod-controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .apod-controls button {
+    width: 80%;
+    max-width: 300px;
+    font-size: 16px;
+  }
+}
+
+/* Very Small Devices */
+@media (max-width: 480px) {
+  .video-overlay h1 {
+    font-size: 20px;
+  }
+
+  .video-overlay-card {
+    font-size: 14px;
+  }
+
+  .apod-controls button {
+    font-size: 14px;
+  }
+}

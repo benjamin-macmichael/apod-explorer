@@ -1,0 +1,1 @@
+export const NEWS_API_KEY: string | undefined = process.env.REACT_APP_NEWS_API_KEY;
