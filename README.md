@@ -2,6 +2,9 @@
 
 **APOD Explorer** is a responsive, single-page React TypeScript application that allows users to explore NASA's Astronomy Picture of the Day (APOD) using the official NASA APOD API. Users can view today's image, generate a random APOD, or search by a specific date. In addition, the app also displays news articles related to NASA, sourced from the News API. All of this is presented in a sleek, dark-themed interface with smooth navigation and a responsive design.
 
+👉 **[View the live site here](https://benjamin-macmichael.github.io/apod-explorer)** 👈
+
+
 ---
 
 ### Key Features:
