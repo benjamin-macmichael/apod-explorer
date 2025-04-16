@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/apod-explorer/static/css/main.94f27715.css",
+    "main.css": "/apod-explorer/static/css/main.d763809e.css",
     "main.js": "/apod-explorer/static/js/main.453818ff.js",
     "index.html": "/apod-explorer/index.html",
-    "main.94f27715.css.map": "/apod-explorer/static/css/main.94f27715.css.map",
+    "main.d763809e.css.map": "/apod-explorer/static/css/main.d763809e.css.map",
     "main.453818ff.js.map": "/apod-explorer/static/js/main.453818ff.js.map"
   },
   "entrypoints": [
-    "static/css/main.94f27715.css",
+    "static/css/main.d763809e.css",
     "static/js/main.453818ff.js"
   ]
 }
