@@ -143,6 +143,9 @@
     width: 90%;
     max-width: 60vw;
   }
+  .search-apod {
+    padding-top: 120px; /* extra space for mobile nav */
+  }
 }
 
 @media (max-width: 480px) {
@@ -167,6 +170,6 @@
   }
 
   .search-apod {
-    padding: 10px;
+    padding: 120px;
   }
 }
