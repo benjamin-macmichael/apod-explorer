@@ -1,4 +1,3 @@
-```markdown
 # 🌌 APOD Explorer
 
 **APOD Explorer** is a responsive, single-page React TypeScript application that allows users to explore NASA's Astronomy Picture of the Day (APOD) using the official NASA APOD API. Users can view today's image, generate a random APOD, or search by a specific date. In addition, the app also displays news articles related to NASA, sourced from the News API. All of this is presented in a sleek, dark-themed interface with smooth navigation and a responsive design.
@@ -53,7 +52,7 @@
 
 ---
 
-## 🔌 API Used & How Data Is Handled
+## 🔌 APIs Used & How Data Is Handled
 
 ### NASA Astronomy Picture of the Day (APOD) API
 **Endpoint:** `https://api.nasa.gov/planetary/apod`
@@ -65,7 +64,7 @@ The app makes GET requests to the APOD API with the following parameters:
 ### News API
 **Endpoint:** `https://newsapi.org/v2/everything?q=nasa`
 
-The app fetches NASA-related news articles using the News API, making GET requests to the above endpoint with the following parameters:
+The app fetches NASA-related news articles using the News API. However, NewsAPI.org blocks requests from GitHub Pages, so this app uses an AWS Lambda function I made to securely handle the API logic. The frontend makes a request to the Lambda URL, which then forwards the request to NewsAPI.org, making GET requests to the above endpoint with the following parameters:
 - `q`: The search term for NASA-related articles (fixed to "nasa").
 - `apiKey`: The required key from your `.env` file.
 - `pageSize`: Limits the number of articles fetched per request (set to 12).
@@ -106,13 +105,12 @@ The application manages state for browsing APOD entries, tracking user interacti
 
 ### Data Fetching:
 - API responses for both the APOD and news articles are fetched using `fetch` in async functions within React components.
-- TypeScript interfaces define the shape of the data for each entity.
 - Responses are stored in the application state (using React state hooks), allowing users to view APOD entries and news articles, and navigate their history.
 - The app uses local storage to prevent repeated API calls if the data does not need to be refreshed, ensuring that browsing history and previously fetched data persist between page reloads.
 
 
 ## 🌟 Additional Features Implemented
 
-- **Local Storage**: Uses local storage to remember previously fetched APOD data, preventing unnecessary API calls when navigating between pages or refreshing the app.
+- **Local Storage**: Uses local storage to remember previously fetched APOD and News data, preventing unnecessary API calls when navigating between pages or refreshing the app.
 
 - **Lambda Function for NewsAPI**: Deployed an AWS Lambda function as a proxy to fetch data from the NewsAPI, since direct requests from GitHub Pages were being blocked.
